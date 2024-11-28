@@ -30,7 +30,6 @@ graph TD
     
     subgraph "Volume Management"
         V1[fa:fa-database cass-shared Volume]
-        style V1 fill:#f9f,stroke:#333,stroke-width:2px
     end
     
     subgraph "Data Layer"
@@ -42,7 +41,6 @@ graph TD
     %% Network Layer
     subgraph "Network Layer"
         N1[fa:fa-network-wired Docker Network]
-        style N1 fill:#bbf,stroke:#333,stroke-width:2px
     end
     
     %% Data Flow
@@ -58,12 +56,6 @@ graph TD
     CX --> N1
     C1 --> N1
     C2 --> N1
-    
-    %% Styling
-    classDef container fill:#e1f5fe,stroke:#01579b,stroke-width:2px
-    classDef volume fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
-    classDef network fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
-    classDef data fill:#fff3e0,stroke:#e65100,stroke-width:2px
     
     %% Apply Classes
     class C1,C2,CX container
