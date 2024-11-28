@@ -38,9 +38,9 @@ graph TD
 
 ## 💻 Technical Stack
 
-- **Containerization**: ![Docker][]
-- **Database**: ![Cassandra][]
-- **Shell Scripting**: ![Bash][]
+- Containerization
+- Database
+- Shell Scripting
 
 ## ⭐ Key Features
 
@@ -49,7 +49,8 @@ graph TD
    - Custom volume drivers
    - Volume lifecycle management
 
-2. Data Persistence   - Database state preservation
+2. Data Persistence   
+   - Database state preservation
    - Cross-container data sharing
    - Volume backup and restore
 
@@ -59,7 +60,8 @@ graph TD
    - Volume mounting strategies
 
 4. Security Features
-   - Volume access control   - Data isolation
+   - Volume access control   
+   - Data isolation
    - Secure volume sharing
 
 5. Performance Optimization
@@ -112,15 +114,19 @@ graph TD
 
 ### Setup Steps
 
-1. Clone the repository```bash
+1. Clone the repository
+```bash
 git clone https://github.com/TheToriqul/docker-volumes.git
 cd docker-volumes
 ```
 
-2. Create required volumes```bash
-docker volume create --name=cass-shared```
+2. Create required volumes
+```bash
+docker volume create --name=cass-shared
+```
 
-3. Run Cassandra container```bash
+3. Run Cassandra container
+```bash
 docker run -d --volume cass-shared:/var/lib/cassandra/data --name cass1 cassandra:2.2
 ```
 
