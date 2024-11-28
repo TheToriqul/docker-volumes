@@ -1,103 +1,134 @@
-# 🚀 Docker Volumes: Data Persistence in Container Environments
+# 🚀 Docker Volume Management with Cassandra
 
-[![GitHub](https://img.shields.io/badge/GitHub-docker--volumes-blue?style=flat&logo=github)](https://github.com/TheToriqul/docker-volumes)
+[![GitHub](https://img.shields.io/badge/GitHub-Docker_Volumes-blue?style=flat&logo=github)](https://github.com/TheToriqul/docker-volumes)
 [![GitHub stars](https://img.shields.io/github/stars/TheToriqul/docker-volumes?style=social)](https://github.com/TheToriqul/docker-volumes/stargazers)
-![Docker](https://img.shields.io/badge/Docker-%230db7ed.svg?style=flat&logo=docker&logoColor=white)
-![Apache Cassandra](https://img.shields.io/badge/Apache_Cassandra-%231E90FF.svg?style=flat&logo=apache-cassandra&logoColor=white)
-![Bash](https://img.shields.io/badge/Bash-%234EAA25.svg?style=flat&logo=gnu-bash&logoColor=white)
-![Linux](https://img.shields.io/badge/Linux-%23FCC624.svg?style=flat&logo=linux&logoColor=black)
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat&logo=docker&logoColor=white)
+![Cassandra](https://img.shields.io/badge/Cassandra-1287B1?style=flat&logo=apache-cassandra&logoColor=white)
+![Bash](https://img.shields.io/badge/Bash-4EAA25?style=flat&logo=gnu-bash&logoColor=white)
 
 ## 📋 Overview
 
-A comprehensive exploration of Docker Volumes focusing on data persistence in containerized environments. This project demonstrates practical implementation of volume management using Apache Cassandra as a real-world example, aimed at DevOps engineers and developers working with containerized applications. This project demonstrates practical implementations of Docker Volumes, with a specific focus on database persistence using Apache Cassandra as an example. Through this work, I've gained hands-on experience with:
-
-- Docker Volume creation and management
-- Data persistence strategies
-- Container lifecycle management
-- Database state preservation
-- Volume mounting and configuration
-- Container networking and linking
+This project demonstrates my understanding of Docker volume management and data persistence using Apache Cassandra. Through hands-on implementation, I've explored how to effectively manage persistent data in containerized environments, focusing on database state preservation and container lifecycle management. This project showcases practical solutions for maintaining data persistence in distributed systems.
 
 ## 🏗 Technical Architecture
 
-The project implements a data persistence layer using Docker volumes with Apache Cassandra as the database system.
+The project implements a data persistence layer using Docker volumes with Apache Cassandra, demonstrating how to maintain database state across container lifecycles.
 
 ```mermaid
 graph TD
-    A["Host Machine"] -->|Create Docker Volume| B["Docker Volume: cass-shared"]
-    B -->|Mount Volume| C["Cassandra Container: cass1"]
-    C -->|Connect using CQLSH| D["Cassandra Client Interactive Shell"]
-    D -->|Create Keyspace| E["Keyspace: docker_hello_world"]
-    E -->|Persist Data| B
-    C -->|Stop and Remove| F["Container Deleted"]
-    B -->|Recover Data| G["Cassandra Container: cass2"]
-    G -->|Connect using CQLSH| H["Verify Keyspace"]
-    H -->|Data Exists| I["Success Data Persistence Verified"]
-    I -->|Clean Up| J["Volume and Containers Removed"]
+    %% Main Components
+    VL[fa:fa-hdd Docker Volume Layer]
+    H[fa:fa-server Docker Host]
+    FS[fa:fa-folder Host Filesystem]
+    
+    %% Containers and Volumes
+    subgraph "Container Layer"
+        C1[fa:fa-cube Cassandra Container 1]
+        C2[fa:fa-cube Cassandra Container 2]
+        CX[fa:fa-cube Temporary CQLSH Container]
+    end
+    
+    subgraph "Volume Management"
+        V1[fa:fa-database cass-shared Volume]
+        style V1 fill:#f9f,stroke:#333,stroke-width:2px
+    end
+    
+    subgraph "Data Layer"
+        D1[fa:fa-file Data Directory]
+        D2[fa:fa-file Keyspaces]
+        D3[fa:fa-file System Tables]
+    end
+    
+    %% Network Layer
+    subgraph "Network Layer"
+        N1[fa:fa-network-wired Docker Network]
+        style N1 fill:#bbf,stroke:#333,stroke-width:2px
+    end
+    
+    %% Data Flow
+    VL --> H
+    H --> FS
+    V1 --> D1
+    D1 --> D2
+    D1 --> D3
+    
+    %% Container Connections
+    C1 --> V1
+    C2 --> V1
+    CX --> N1
+    C1 --> N1
+    C2 --> N1
+    
+    %% Styling
+    classDef container fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef volume fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef network fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef data fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    
+    %% Apply Classes
+    class C1,C2,CX container
+    class V1 volume
+    class N1 network
+    class D1,D2,D3 data
 ```
 
 ## 💻 Technical Stack
 
-- Containerization
-- Database
-- Shell Scripting
+- **Containerization**: ![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat&logo=docker&logoColor=white)
+- **Database**: ![Cassandra](https://img.shields.io/badge/Cassandra-1287B1?style=flat&logo=apache-cassandra&logoColor=white)
+- **Shell Scripting**: ![Bash](https://img.shields.io/badge/Bash-4EAA25?style=flat&logo=gnu-bash&logoColor=white)
 
 ## ⭐ Key Features
 
 1. Volume Management
-   - Volume creation and configuration
-   - Custom volume drivers
+   - Creation and configuration of Docker volumes
    - Volume lifecycle management
+   - Data persistence across container restarts
 
-2. Data Persistence   
-   - Database state preservation
-   - Cross-container data sharing
-   - Volume backup and restore
+2. Database Operations
+   - Cassandra database setup with Docker
+   - Data persistence verification
+   - Database state management
 
-3. Container Integration
-   - Multi-container setup
-   - Container linking
-   - Volume mounting strategies
+3. Container Management
+   - Container creation with volume mounts
+   - Container lifecycle handling
+   - Multi-container data sharing
 
-4. Security Features
-   - Volume access control   
-   - Data isolation
-   - Secure volume sharing
-
-5. Performance Optimization
-   - Efficient data access
-   - Volume driver optimization
-   - Resource management
+4. Data Persistence
+   - Volume backup strategies
+   - Data recovery procedures
+   - State verification methods
 
 ## 📚 Learning Journey
 
 ### Technical Mastery:
 
-1. Docker volume architecture and implementation
-2. Data persistence strategies in containerized environments
-3. Database state management with volumes
-4. Container networking and communication
-5. Volume backup and recovery procedures
+1. Docker Volume Architecture
+2. Container Data Persistence
+3. Database State Management
+4. Multi-Container Communication
+5. Data Backup and Recovery
 
 ### Professional Development:
 
-1. Infrastructure design patterns
-2. System architecture planning
-3. Documentation practices
-4. Problem-solving in distributed systems
-5. Best practices implementation
+1. Infrastructure Design
+2. Documentation Skills
+3. Problem-Solving Approach
+4. Best Practices Implementation
+5. System Architecture Planning
 
 ## 🔄 Future Enhancements
 
 <details>
 <summary>View Planned Improvements</summary>
 
-1. Implementation of custom volume drivers
-2. Advanced backup automation
-3. Multi-host volume sharing
-4. Volume monitoring and metrics
-5. Integration with cloud storage providers
-6. High availability volume configuration
+1. Multi-node Cassandra cluster setup
+2. Automated backup solution
+3. Monitoring and alerting system
+4. Volume management automation
+5. Performance optimization strategies
+6. High availability configuration
 </details>
 
 ## ⚙️ Installation
@@ -107,28 +138,57 @@ graph TD
 
 ### Prerequisites
 
-- Docker Engine 20.10+
-- Docker Compose 2.0+
-- 4GB+ RAM
-- Linux/Unix-based system
+- Docker Engine
+- Docker Compose
+- Basic understanding of Cassandra
 
 ### Setup Steps
 
-1. Clone the repository
+1. Clone the repository:
 ```bash
 git clone https://github.com/TheToriqul/docker-volumes.git
 cd docker-volumes
 ```
 
-2. Create required volumes
+2. Create Docker volume:
 ```bash
-docker volume create --name=cass-shared
+docker volume create --driver local --label example=cassandra cass-shared
 ```
 
-3. Run Cassandra container
+3. Run Cassandra container:
 ```bash
 docker run -d --volume cass-shared:/var/lib/cassandra/data --name cass1 cassandra:2.2
 ```
+
+</details>
+
+## 📖 Usage Guide
+
+<details>
+<summary>View Usage Details</summary>
+
+### Basic Usage
+
+1. Connect to Cassandra:
+```bash
+docker run -it --rm --link cass1:cass cassandra:2.2 cqlsh cass
+```
+
+2. Create and verify keyspace:
+```sql
+CREATE KEYSPACE docker_hello_world 
+WITH replication = {
+    'class': 'SimpleStrategy',
+    'replication_factor': 1
+};
+```
+
+### Verification
+
+To verify data persistence:
+1. Stop and remove the container
+2. Create a new container with the same volume
+3. Check if the keyspace exists
 
 </details>
 
@@ -145,9 +205,9 @@ docker run -d --volume cass-shared:/var/lib/cassandra/data --name cass1 cassandr
 ## 👏 Acknowledgments
 
 - [Poridhi for excellent labs](https://poridhi.io/)
-- Docker Documentation Team
-- Apache Cassandra Community
-- Container Solutions Community
+- Docker documentation for comprehensive guides
+- Apache Cassandra community for database insights
+- Container community for best practices
 
 ---
 
