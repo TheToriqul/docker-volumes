@@ -140,7 +140,7 @@ docker run -d --volume cass-shared:/var/lib/cassandra/data --name cass1 cassandr
 ## 🔗 Project Links
 
 - [GitHub Repository](https://github.com/TheToriqul/docker-volumes)
-- [Documentation](./script-commands.md)
+- [Docker Volumes Command Reference Guide](./reference-commands.md)
 
 ## 👏 Acknowledgments
 
