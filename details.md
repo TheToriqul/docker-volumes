@@ -150,7 +150,7 @@ For any inquiries or feedback, please reach out:
 
 - Email: toriqul.int@gmail.com
 - Phone: +65 8936 7705, +8801765 939006
-- LinkedIn: [linkedin.com/in/toriqulint](https://www.linkedin.com/in/toriqulint/)
+- LinkedIn: [linkedin.com/in/thetoriqul](https://www.linkedin.com/in/thetoriqul/)
 
 ## 🙌 Acknowledgments
 
